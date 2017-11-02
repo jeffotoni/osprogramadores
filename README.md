@@ -2,10 +2,15 @@
 
 Grupo os Programdores, desafios em programação, é um site destinado a disseminar o conhecimento de programação e assuntos ligados aos computadores em geral.
 
-Existe alguns desafios interessantes em programção para da uma conferida basta ir aqui https://osprogramadores.com/desafios
+Existe alguns desafios interessantes em programção em:
+- https://osprogramadores.com/desafios
+
+
+# link para acessar o desafio 5 no site
+
+ - https://osprogramadores.com/desafios/d05/
 
 O desafio 5 é para desenvolver um programa que leia um arquivo no formato json e consiga abstrair as seguintes respostas:
-
 
  - Quem mais recebe e quem menos recebe na empresa e a média salarial da empresa
 
@@ -14,10 +19,6 @@ O desafio 5 é para desenvolver um programa que leia um arquivo no formato json 
  - A área com mais funcionários e a área com menos funcionários
 
  - Das pessoas que têm o mesmo sobrenome, aquela que recebe mais (não inclua sobrenomes que apenas uma pessoa tem nos resultados)
-
-# link para acessar o desafio no site
-
- - https://osprogramadores.com/desafios/d05/
 
 
 # Codigo
