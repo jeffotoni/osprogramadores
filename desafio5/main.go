@@ -298,13 +298,38 @@ func main() {
 	}
 
 	fmt.Println("")
-	fmt.Println("funcionarios maior salario na area: ", MapAreaSalFuncMaior)
-	fmt.Println("funcionarios menor salario na area: ", MapAreaSalFuncMenor)
+	fmt.Println("Funcionario(s) com maior salario na Area: ")
+
+	for A, N := range MapAreaSalFuncMaior {
+
+		fmt.Println("Area: ", A, " Nome: ", N)
+	}
+
+	fmt.Println("")
+	fmt.Println("Funcionarios com menor salario na Area: ")
+
+	for A, N := range MapAreaSalFuncMenor {
+
+		fmt.Println("Area: ", A, " Nome: ", N)
+	}
+
+	fmt.Println("")
 	fmt.Println("area com maior quantidade funcionarios ", AreaQMa["maior"])
+
+	fmt.Println("")
 	fmt.Println("area com menor quantidade funcionarios ", AreaQMa["menor"])
 
-	fmt.Println("Funcionarios com mesmo sobrenome: ", NomeSobreSal)
-	fmt.Println("Funcionarios com mesmo sobrenome com maior salario: ", nomeRMS, " salario: ", slftmp)
+	fmt.Println("")
+	fmt.Println("Funcionario(s) com mesmo sobrenome: ")
+
+	for A, S := range NomeSobreSal {
+
+		fmt.Println("Nome: ", A, " Salario: ", S)
+	}
+
+	fmt.Println("")
+	fmt.Println("Funcionario com mesmo sobrenome e com maior salario")
+	fmt.Println("Nome: ", nomeRMS, " salario: ", slftmp)
 
 	fmt.Println("")
 	fmt.Println("#################################")
