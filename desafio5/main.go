@@ -142,9 +142,6 @@ func main() {
 		}
 	}
 
-	fmt.Println("################ listando na tela o resultado #################")
-	fmt.Println("")
-
 	qtmp := 0
 	qtmpe := 100000
 
@@ -248,19 +245,53 @@ func main() {
 
 	smedia := (ssoma / qfunc)
 
+	fmt.Println("")
+	fmt.Println("################ listando na tela o resultado #################")
+	fmt.Println("")
+
 	//// Quem mais recebe e quem menos recebe na empresa e a média salarial da empresa
 	fmt.Println("Maior salario da Corporacao: ", smaior)
+	fmt.Println("")
 	fmt.Println("Menor salario da Corporacao: ", smenor)
+	fmt.Println("")
 	fmt.Println("Media de salario da Corporacao: ", smedia)
+	fmt.Println("")
+	fmt.Println("Funcionario(s) que mais recebe na Corporacao")
 
-	fmt.Println("Funcionario que mais recebe na Corporacao: ", Mafunc)
-	fmt.Println("Funcionario que menor recebe na Corporacao: ", Mefunc)
+	for _, Nome := range Mafunc {
+
+		fmt.Println("Nome: ", Nome)
+	}
+
+	fmt.Println("")
+	fmt.Println("Funcionario(s) que menor recebe na Corporacao")
+
+	for _, Nome := range Mefunc {
+
+		fmt.Println("Nome: ", Nome)
+	}
 
 	// os que mais recebem por area e os que menos recebem
-	//
-	fmt.Println("maior salario das areas: ", AreaSMa)
+
+	fmt.Println("")
+	fmt.Println("maior salario das areas: ")
+
+	for A, S := range AreaSMa {
+
+		fmt.Println("Area: ", A, " Salario: ", S)
+	}
+
+	fmt.Println("")
 	fmt.Println("menor salario das areas: ", AreaSMe)
+
+	for A, S := range AreaSMe {
+
+		fmt.Println("Area: ", A, " Salario: ", S)
+	}
+
+	fmt.Println("")
 	fmt.Println("media salario area: ", AreaSSm)
+	fmt.Println("")
 	fmt.Println("funcionarios maior salario na area: ", MapAreaSalFuncMaior)
 	fmt.Println("funcionarios menor salario na area: ", MapAreaSalFuncMenor)
 	fmt.Println("area com maior quantidade funcionarios ", AreaQMa["maior"])
