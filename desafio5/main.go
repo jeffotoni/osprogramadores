@@ -168,14 +168,14 @@ func main() {
 		}
 	}
 
-	// valor do salario
-	// por area o maior
-	// salario
+	// quantidade
+	// de colaboradores
+	// nas areas
 	qtmp := 0
 
-	// valor do salario
-	// por area o menor
-	// salario
+	// quantidade
+	// de colaboradores
+	// nas areas
 	qtmpe := 100000
 
 	// Salarios por areas, medias
@@ -196,7 +196,7 @@ func main() {
 		}
 
 		stmp := 0
-		stmp2 := 100000
+		stmp2 := smaior + 100
 
 		// menor e maior salario por area
 		// media por area
