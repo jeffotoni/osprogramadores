@@ -291,6 +291,12 @@ func main() {
 
 	fmt.Println("")
 	fmt.Println("media salario area: ", AreaSSm)
+
+	for A, S := range AreaSSm {
+
+		fmt.Println("Area: ", A, " Media Salario: ", S)
+	}
+
 	fmt.Println("")
 	fmt.Println("funcionarios maior salario na area: ", MapAreaSalFuncMaior)
 	fmt.Println("funcionarios menor salario na area: ", MapAreaSalFuncMenor)
