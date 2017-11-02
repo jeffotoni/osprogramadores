@@ -1,7 +1,8 @@
 /**
  *
- *
- *
+ * @author      Jefferson Otoni Lima
+ * @copyright   Copyright (c) 2017 - 2017
+ * @since       Version 1.0
  */
 
 package main
