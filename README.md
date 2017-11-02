@@ -68,7 +68,6 @@ func getCorporacao() Corporacao {
 	return C
 }
 
-
 // Quem mais recebe e quem menos recebe na empresa e a média salarial da empresa
 // Quem mais recebe e quem menos recebe em cada área e a média salarial em cada área
 // A área com mais funcionários e a área com menos funcionários
@@ -76,22 +75,34 @@ func getCorporacao() Corporacao {
 
 func main() {
 
+	// Struct em Json
 	C := getCorporacao()
 
+	// Json Funcionarios
 	funcionarios := C.Funcionarios
-	// VAreas := C.Areas
 
+	// maior salario
 	smaior := 0
+
+	// menor salario
 	smenor := 1000000
+
+	//soma dos salarios
 	ssoma := 0
 
+	// quantidade de funcionarios
+	// em toda corporacao
 	qfunc := len(funcionarios)
 
+	// mapa de funcionarios
+	// maior salario
 	Mafunc := make(map[int]string)
+
+	// mapa de funcionarios
+	// menor salario
 	Mefunc := make(map[int]string)
 
-	var datJson map[string]interface{}
-
+	// Areas
 	MapAreas := make(map[string][]string)
 
 	// funcionarios que possui maior salario por area
@@ -114,13 +125,17 @@ func main() {
 
 	// vetor de nomes, sobrenomes
 	VNomeSob := make(map[string]string)
-	// vetor de area media salario
 
+	// vetor de nome sobrenome e salrio
+	// somente os que repetem
 	NomeSobreSal := make(map[string]string)
 
-	t := 0
+	// dataJson responsavel por
+	// Unmarshal em um string json
+	var datJson map[string]interface{}
 
-	// Quem mais recebe e quem menos recebe na empresa e a média salarial da empresa
+	// Quem mais recebe e quem menos
+	// recebe na empresa e a média salarial da empresa
 	for _, Func := range funcionarios {
 
 		if Func.Salario > smaior { // recebe mais
@@ -135,28 +150,37 @@ func main() {
 		// media salarial
 		ssoma += Func.Salario
 
+		// amarzenando area e seus funcionarios
+		// agrupando area => funcionarios
+		// [area] => [{funcionarios}]
 		MapAreas[Func.Area] = append(MapAreas[Func.Area], `{"area":"`+Func.Area+`","nome":"`+Func.Nome+`","salario":"`+fmt.Sprintf("%d", Func.Salario)+`"}`)
 
+		// Vetor de nome e sobrenome de
+		// toda corporacao
 		VNomeSob[Func.Nome] = Func.Sobrenome
-
-		t++
 	}
 
 	// buscando os nomes de maior e menor salario
 	// da corporacao
 	for i, Func := range funcionarios {
 
+		// montando uma lista de
+		// nome que possuem o maior salario
 		if Func.Salario == smaior {
 
 			Mafunc[i] = Func.Nome + " " + Func.Sobrenome
 		}
 
+		// montando uma lista de
+		// nome que possuem o menor salario
 		if Func.Salario == smenor {
 
 			Mefunc[i] = Func.Nome + " " + Func.Sobrenome
 		}
 
 		// buscando e montando vetor dos sobrenomes que repetem
+		// os que repetem monta uma lista com nome sobrenome
+		// e seu respectivo salario
 		if ExistSobreNome(VNomeSob, Func.Nome, Func.Sobrenome) {
 
 			NomeSobreSal[Func.Nome+" "+Func.Sobrenome] = fmt.Sprintf("%d", Func.Salario)
@@ -164,7 +188,14 @@ func main() {
 		}
 	}
 
+	// valor do salario
+	// por area o maior
+	// salario
 	qtmp := 0
+
+	// valor do salario
+	// por area o menor
+	// salario
 	qtmpe := 100000
 
 	// Salarios por areas, medias
@@ -355,7 +386,6 @@ func main() {
 
 	fmt.Println("")
 	fmt.Println("#################################")
-
 }
 
 ```
