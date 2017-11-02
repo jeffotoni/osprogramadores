@@ -144,17 +144,23 @@ func main() {
 	// da corporacao
 	for i, Func := range funcionarios {
 
+		// montando uma lista de
+		// nome que possuem o maior salario
 		if Func.Salario == smaior {
 
 			Mafunc[i] = Func.Nome + " " + Func.Sobrenome
 		}
 
+		// montando uma lista de
+		// nome que possuem o menor salario
 		if Func.Salario == smenor {
 
 			Mefunc[i] = Func.Nome + " " + Func.Sobrenome
 		}
 
 		// buscando e montando vetor dos sobrenomes que repetem
+		// os que repetem monta uma lista com nome sobrenome
+		// e seu respectivo salario
 		if ExistSobreNome(VNomeSob, Func.Nome, Func.Sobrenome) {
 
 			NomeSobreSal[Func.Nome+" "+Func.Sobrenome] = fmt.Sprintf("%d", Func.Salario)
@@ -162,7 +168,14 @@ func main() {
 		}
 	}
 
+	// valor do salario
+	// por area o maior
+	// salario
 	qtmp := 0
+
+	// valor do salario
+	// por area o menor
+	// salario
 	qtmpe := 100000
 
 	// Salarios por areas, medias
