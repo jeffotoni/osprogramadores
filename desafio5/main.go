@@ -47,7 +47,7 @@ func getCorporacao() Corporacao {
 	fmt.Println("")
 
 	// colocando na memoria todo arquivo 1.1G
-	raw, err := ioutil.ReadFile("./funcionarios-14M.json")
+	raw, err := ioutil.ReadFile("./files-json/funcionarios-14M.json")
 
 	//
 	if err != nil {
