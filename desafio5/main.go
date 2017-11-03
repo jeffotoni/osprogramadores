@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strconv"
+	"time"
 )
 
 //
@@ -38,13 +39,34 @@ type Corporacao struct {
 //
 func getCorporacao() Corporacao {
 
-	raw, err := ioutil.ReadFile("./funcionarios.json")
+	t1 := time.Now()
+
+	fmt.Println("")
+	fmt.Println("########## inicio abrindo arquivo json #########")
+	fmt.Println("time inicio: [" + fmt.Sprintf("%s", t1.Format("2006-01-02 15:04:05")) + "]")
+	fmt.Println("")
+
+	// colocando na memoria todo arquivo 1.1G
+	raw, err := ioutil.ReadFile("./funcionarios-14M.json")
+
+	//
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(0)
 	}
+
 	var C Corporacao
 	json.Unmarshal(raw, &C)
+
+	t2 := time.Now()
+
+	timeSpent := t2.Sub(t1)
+
+	fmt.Println("")
+	fmt.Println("########## fim, json na memoria time fim #########")
+	fmt.Println("time fim: [" + fmt.Sprintf("%s", timeSpent) + "]")
+	fmt.Println("")
+
 	return C
 }
 
@@ -54,6 +76,23 @@ func getCorporacao() Corporacao {
 // Das pessoas que têm o mesmo sobrenome, aquela que recebe mais (não inclua sobrenomes que apenas uma pessoa tem nos resultados)
 
 func main() {
+
+	var debugtime bool
+
+	// definindo o ambiente
+	// para executar somente
+	// sem apresentar os resultados
+	debugtime = true
+
+	t1 := time.Now()
+
+	if debugtime {
+
+		fmt.Println("")
+		fmt.Println("########## inicio da execucao code #########")
+		fmt.Println("time inicio: [" + fmt.Sprintf("%s", t1.Format("2006-01-02 15:04:05")) + "]")
+		fmt.Println("")
+	}
 
 	// Struct em Json
 	C := getCorporacao()
@@ -278,94 +317,108 @@ func main() {
 
 	smedia := (ssoma / qfunc)
 
-	fmt.Println("")
-	fmt.Println("################ listando na tela o resultado #################")
-	fmt.Println("")
+	if debugtime {
 
-	//// Quem mais recebe e quem menos recebe na empresa e a média salarial da empresa
-	fmt.Println("Maior salario da Corporacao: ", smaior)
-	fmt.Println("")
-	fmt.Println("Menor salario da Corporacao: ", smenor)
-	fmt.Println("")
-	fmt.Println("Media de salario da Corporacao: ", smedia)
-	fmt.Println("")
-	fmt.Println("Funcionario(s) que mais recebe na Corporacao")
+		t2 := time.Now()
 
-	for _, Nome := range Mafunc {
+		timeSpent := t2.Sub(t1)
 
-		fmt.Println("Nome: ", Nome)
+		fmt.Println("")
+		fmt.Println("########## fim, json na memoria time fim #########")
+		fmt.Println("time fim: [" + fmt.Sprintf("%s", timeSpent) + "]")
+		fmt.Println("")
+
+	} else {
+
+		fmt.Println("")
+		fmt.Println("################ listando na tela o resultado #################")
+		fmt.Println("")
+
+		//// Quem mais recebe e quem menos recebe na empresa e a média salarial da empresa
+		fmt.Println("Maior salario da Corporacao: ", smaior)
+		fmt.Println("")
+		fmt.Println("Menor salario da Corporacao: ", smenor)
+		fmt.Println("")
+		fmt.Println("Media de salario da Corporacao: ", smedia)
+		fmt.Println("")
+		fmt.Println("Funcionario(s) que mais recebe na Corporacao")
+
+		for _, Nome := range Mafunc {
+
+			fmt.Println("Nome: ", Nome)
+		}
+
+		fmt.Println("")
+		fmt.Println("Funcionario(s) que menor recebe na Corporacao")
+
+		for _, Nome := range Mefunc {
+
+			fmt.Println("Nome: ", Nome)
+		}
+
+		// os que mais recebem por area e os que menos recebem
+
+		fmt.Println("")
+		fmt.Println("maior salario das areas: ")
+
+		for A, S := range AreaSMa {
+
+			fmt.Println("Area: ", A, " Salario: ", S)
+		}
+
+		fmt.Println("")
+		fmt.Println("menor salario das areas: ", AreaSMe)
+
+		for A, S := range AreaSMe {
+
+			fmt.Println("Area: ", A, " Salario: ", S)
+		}
+
+		fmt.Println("")
+		fmt.Println("media salario area: ", AreaSSm)
+
+		for A, S := range AreaSSm {
+
+			fmt.Println("Area: ", A, " Media Salario: ", S)
+		}
+
+		fmt.Println("")
+		fmt.Println("Funcionario(s) com maior salario na Area: ")
+
+		for A, N := range MapAreaSalFuncMaior {
+
+			fmt.Println("Area: ", A, " Nome: ", N)
+		}
+
+		fmt.Println("")
+		fmt.Println("Funcionarios com menor salario na Area: ")
+
+		for A, N := range MapAreaSalFuncMenor {
+
+			fmt.Println("Area: ", A, " Nome: ", N)
+		}
+
+		fmt.Println("")
+		fmt.Println("area com maior quantidade funcionarios ", AreaQMa["maior"])
+
+		fmt.Println("")
+		fmt.Println("area com menor quantidade funcionarios ", AreaQMa["menor"])
+
+		fmt.Println("")
+		fmt.Println("Funcionario(s) com mesmo sobrenome: ")
+
+		for A, S := range NomeSobreSal {
+
+			fmt.Println("Nome: ", A, " Salario: ", S)
+		}
+
+		fmt.Println("")
+		fmt.Println("Funcionario com mesmo sobrenome e com maior salario")
+		fmt.Println("Nome: ", nomeRMS, " salario: ", slftmp)
+
+		fmt.Println("")
+		fmt.Println("#################################")
 	}
-
-	fmt.Println("")
-	fmt.Println("Funcionario(s) que menor recebe na Corporacao")
-
-	for _, Nome := range Mefunc {
-
-		fmt.Println("Nome: ", Nome)
-	}
-
-	// os que mais recebem por area e os que menos recebem
-
-	fmt.Println("")
-	fmt.Println("maior salario das areas: ")
-
-	for A, S := range AreaSMa {
-
-		fmt.Println("Area: ", A, " Salario: ", S)
-	}
-
-	fmt.Println("")
-	fmt.Println("menor salario das areas: ", AreaSMe)
-
-	for A, S := range AreaSMe {
-
-		fmt.Println("Area: ", A, " Salario: ", S)
-	}
-
-	fmt.Println("")
-	fmt.Println("media salario area: ", AreaSSm)
-
-	for A, S := range AreaSSm {
-
-		fmt.Println("Area: ", A, " Media Salario: ", S)
-	}
-
-	fmt.Println("")
-	fmt.Println("Funcionario(s) com maior salario na Area: ")
-
-	for A, N := range MapAreaSalFuncMaior {
-
-		fmt.Println("Area: ", A, " Nome: ", N)
-	}
-
-	fmt.Println("")
-	fmt.Println("Funcionarios com menor salario na Area: ")
-
-	for A, N := range MapAreaSalFuncMenor {
-
-		fmt.Println("Area: ", A, " Nome: ", N)
-	}
-
-	fmt.Println("")
-	fmt.Println("area com maior quantidade funcionarios ", AreaQMa["maior"])
-
-	fmt.Println("")
-	fmt.Println("area com menor quantidade funcionarios ", AreaQMa["menor"])
-
-	fmt.Println("")
-	fmt.Println("Funcionario(s) com mesmo sobrenome: ")
-
-	for A, S := range NomeSobreSal {
-
-		fmt.Println("Nome: ", A, " Salario: ", S)
-	}
-
-	fmt.Println("")
-	fmt.Println("Funcionario com mesmo sobrenome e com maior salario")
-	fmt.Println("Nome: ", nomeRMS, " salario: ", slftmp)
-
-	fmt.Println("")
-	fmt.Println("#################################")
 
 }
 
